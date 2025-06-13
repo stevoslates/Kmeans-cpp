@@ -53,4 +53,4 @@ Cluster 2 Centroid: (5.0, 8.0)
 ## Currently Improving 
 - Kmeans++ Initalisation 
 - Extend to n-dimensional clustering
-- Parralelise computations
+- Parralelise Computations
