@@ -6,6 +6,11 @@
 namespace io {
 
     bool populatePointsFromFile(const std::string& filename, std::vector<Point>& points) {
+        /*
+        TO DO: Need to add a check ensuring they are all the same dimension!
+        */
+
+
         std::ifstream infile(filename);
         if (!infile.is_open()) {
             std::cerr << "Error: Cannot open file: " << filename << std::endl;
@@ -17,13 +22,19 @@ namespace io {
             if (line.empty()) continue;
 
             std::istringstream iss(line);
-            double x, y;
-            if (!(iss >> x >> y)) {
-                std::cerr << "Error: Malformed line: " << line << std::endl;
+            std::vector<double> coords;
+            double value;
+            while (iss >> value) {
+                coords.push_back(value);
+            }
+
+            if (coords.empty()) {
+                std::cerr << "Error: Malformed or empty line: " << line << std::endl;
                 return false;
             }
 
-            Point p{static_cast<int>(points.size()), x, y};
+            // pointId simply based on size (zero-based IDs)
+            Point p{static_cast<int>(points.size()), coords};
             points.push_back(p);
         }
 
@@ -51,8 +62,13 @@ namespace io {
         outfile << "\nCluster Centroids:\n";
         auto centroids = kmeans.getCentroids();
         for (size_t i = 0; i < centroids.size(); ++i) {
-            outfile << "Cluster " << (i + 1) << " Centroid: (" 
-                    << centroids[i].first << ", " << centroids[i].second << ")\n";
+            outfile << "Cluster " << (i + 1) << " Centroid: (";
+            const auto& coords = centroids[i];
+            for (size_t j = 0; j < coords.size(); ++j) {
+                outfile << coords[j];
+                if (j != coords.size() - 1) outfile << ", ";
+            }
+            outfile << ")\n";
         }
     }
 

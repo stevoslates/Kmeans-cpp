@@ -14,15 +14,15 @@ private:
     Cluster& findClosestCluster(const Point& pt);
     void clearClusterAssignedPoints();
     double calcDistance(const Point& pt, const Cluster& c);
-    bool hasConverged(const std::vector<std::pair<double,double>>&,
-                    const std::vector<std::pair<double,double>>& oldClusters);
+    bool hasConverged(const std::vector<std::vector<double>>&,
+                      const std::vector<std::vector<double>>& oldClusters);
     void updateNewClusterCentroids(const std::vector<Point>& points);
 
 
 public:
     explicit Kmeans(int k): K(k) {}
     void run(std::vector<Point>& points);
-    std::vector<std::pair<double, double>> getCentroids() const;
+    std::vector<std::vector<double>> getCentroids() const;
 
     
 };
