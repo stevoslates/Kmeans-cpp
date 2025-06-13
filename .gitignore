@@ -1,0 +1,15 @@
+build/
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+Makefile
+*.o
+*.out
+*.log
+*.exe
+*.a
+*.so
+*.dSYM/
+.vscode/
+scikitcomp.py
+main
