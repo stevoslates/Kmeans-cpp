@@ -24,7 +24,7 @@ The program accepts 3 command-line arguments:
 ```
 
 ## Input Format
-The input (.txt) file should contain 2D points, one per line:
+The input (.txt) file should contain points, one per line, this example uses 2-D but can use N-D:
 
 Example:
 
