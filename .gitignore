@@ -13,3 +13,4 @@ Makefile
 .vscode/
 scikitcomp.py
 main
+.DS_Store
